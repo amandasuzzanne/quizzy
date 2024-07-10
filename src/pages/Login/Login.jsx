@@ -1,18 +1,51 @@
 import React, { useState } from 'react';
 import './Login.css';
-// import './script.js';
 
-const Login = ({ setEmail }) => { // Destructure setEmail from props
+const Login = ({ setEmail }) => {
 
   const [userName, setUserName] = useState("");
   const [email, setEmailLocal] = useState("");
   const [password, setPassword] = useState("");
   const [isActive, setIsActive] = useState(false);
 
+  function handleSubmitLogin(e){
+    e.preventDefault();
+    fetch('http://127.0.0.1:5555/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, password: password })
+    })
+    .then((r) => {
+      if (r.ok) {
+        r.json()
+        .then((email) => setEmail(email))
+      } else {
+        console.error('Error:', r.status);
+      }
+    })
+  }
+
+  function handleSubmitSignup(e){
+    e.preventDefault();
+    fetch('http://127.0.0.1:5555/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: userName ,email: email, password: password })
+    })
+   .then((r) => {
+     if (r.ok) {
+        r.json()
+        .then((email) => setEmail(email))
+      } else {
+        console.error('Error:', r.status);
+      }
+    })
+   }
+
   return (
     <div className={`container ${isActive ? 'active' : ''}`} id="container">
       <div className="form-container sign-up">
-        <form>
+        <form onSubmit={handleSubmitSignup}>
           <h1>Create Account</h1>
           <span>Register with Email</span>
           <input type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
@@ -24,7 +57,7 @@ const Login = ({ setEmail }) => { // Destructure setEmail from props
       </div>
 
       <div className="form-container sign-in">
-        <form>
+        <form onSubmit={handleSubmitLogin}>
           <h1>Sign In</h1>
           <span>Sign in with Email</span>
           <input type="text" placeholder="Email" value={email} onChange={(e) => setEmailLocal(e.target.value)} />
