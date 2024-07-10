@@ -1,50 +1,54 @@
 import React, { useState } from 'react';
 import './Login.css';
+// import './script.js';
 
 const Login = ({ setEmail }) => { // Destructure setEmail from props
 
-  const [signState, setSignState] = useState("Sign In");
   const [userName, setUserName] = useState("");
   const [email, setEmailLocal] = useState("");
   const [password, setPassword] = useState("");
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (signState === "Sign In") {
-  //       // Handle sign-in logic here
-  //       console.log("Sign In:", { email, password });
-  //   } else {
-  //       // Handle sign-up logic here
-  //       console.log("Sign Up:", { userName, email, password });
-  //   }
-  //   setEmail(email); // Update the email in the parent component
-  // };
+  const [isActive, setIsActive] = useState(false);
 
   return (
-    <div className="login">
-       <div className="login-form">
-        <h1>{signState}</h1>
-        <form id="login-frm">
-          {signState ==="Sign Up" ? 
-          <input value={userName} name='username' onChange={(e)=>{setUserName(e.target.value)}} type="text" placeholder="User Name"/>:<></>}
-          <input value={email} name="email" onChange={(e)=>{setEmailLocal(e.target.value)}} type="email" placeholder="Email" id="email-input"/>
-          <input value={password}  onChange={(e)=>{setPassword(e.target.value)}} type="password" placeholder="Password"/>
-          <button  type='submit'>{signState}</button>
-          <div className="form-help">
-            <div className="remember">
-              <input type="checkbox"/>
-              <label htmlFor=''>Remember Me</label>
-            </div>
-            <p>Need Some Help?</p>
-          </div>
+    <div className={`container ${isActive ? 'active' : ''}`} id="container">
+      <div className="form-container sign-up">
+        <form>
+          <h1>Create Account</h1>
+          <span>Register with Email</span>
+          <input type="text" placeholder="Username" value={userName} onChange={(e) => setUserName(e.target.value)} />
+          <input type="text" placeholder="Email" value={email} onChange={(e) => setEmailLocal(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button>Sign Up</button>
         </form>
-        <div className="form-switch">
-          {signState === "Sign In"?
-          <p>New to Quizzy?<span onClick={()=>{setSignState("Sign Up")}}>Sign Up Now!</span></p>
-          :<p>Already have an account?<span onClick={()=>{setSignState("Sign In")}}>Sign In</span></p>
-        } 
+        
+      </div>
+
+      <div className="form-container sign-in">
+        <form>
+          <h1>Sign In</h1>
+          <span>Sign in with Email</span>
+          <input type="text" placeholder="Email" value={email} onChange={(e) => setEmailLocal(e.target.value)} />
+          <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+          <button>Sign In</button>
+          {/* <a href="#" className="forgot-password">Forgot Password?</a> */}
+        </form>
+      </div>
+
+      <div className="toggle-container">
+            <div className="toggle">
+                <div className="toggle-panel toggle-left">
+                    <h1>Quizzy🌶️</h1>
+                    <p>The World's Best Quiz App. Ever.</p>
+                    <button className="hidden" id="login" onClick={() => {setIsActive(false)}}>Sign In</button>
+                </div>
+                <div className="toggle-panel toggle-right">
+                    <h1>Quizzy🫶🏾</h1>
+                    <p>The World's Best Quiz App. Ever.</p>
+                    <button className="hidden" id="register" onClick={() =>{setIsActive(true)}}>Sign Up</button>
+                </div>
+            </div>
         </div>
-       </div>
+       
     </div>
   );
 };
