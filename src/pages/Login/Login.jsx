@@ -10,7 +10,7 @@ const Login = ({ setEmail }) => {
 
   function handleSubmitLogin(e){
     e.preventDefault();
-    fetch('http://127.0.0.1:5555/login', {
+    fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password })
@@ -27,7 +27,7 @@ const Login = ({ setEmail }) => {
 
   function handleSubmitSignup(e){
     e.preventDefault();
-    fetch('http://127.0.0.1:5555/signup', {
+    fetch('/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username: userName ,email: email, password: password })
@@ -35,7 +35,7 @@ const Login = ({ setEmail }) => {
    .then((r) => {
      if (r.ok) {
         r.json()
-        .then((email) => setEmail(email))
+        .then((email) => setEmailLocal(email))
       } else {
         console.error('Error:', r.status);
       }
