@@ -1,20 +1,11 @@
 import './Home.css';
-import About from './components/about';
-import Contact from './components/contact';
-import Footer from './components/footer';
-// import Navbar from './components/navbar';
-import Main from './components/main';
+import AllQuizzes from './components/allquizzes';
+
 
 function Home(){
     return (
       <div className="home-container">
-        <Main/>
-        <About/>
-        <Contact/>
-        <Footer/>
-        
-
-        
+        <AllQuizzes />  {/* component to display all quizzes */}
       </div>
     );
 }
