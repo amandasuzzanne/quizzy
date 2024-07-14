@@ -7,15 +7,6 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-body{
-    background-color: rgba(0, 0, 0, 0.795);
-    /* background-image: url(/Users/lennywachira/Documents/GitHub/quizzy/src/assets/8a78bdde47ca8066c7f08bd92e7b5353100b6282.webp); */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-}
 
 .login-container{
     background-color: #fff;

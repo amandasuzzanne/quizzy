@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './allquizzes.css';
 
 const AllQuizzes = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -41,20 +42,25 @@ const AllQuizzes = () => {
   }
 
   return (
-    <div>
+    <div className='allq'>
       <h1>Quizzes</h1>
-      <ul>
+    <div className="all-quizzes">
         {quizzes.map((quiz) => {
-          console.log(`Rendering quiz with id: ${quiz.id}`);
           return (
-            <li key={quiz.id}>
-              <Link to={`/quiz/${quiz.id}`}>{quiz.title}</Link>
-              <p>{quiz.description}</p>
-              <p>{quiz.created_at}</p>
-            </li>
+            <Link  to={`/quiz/${quiz.id}`}key={quiz.id} className="each-quiz">
+              <div className='each-quiz-inner'>
+              <img src={quiz.image_url} alt="img"></img>
+              <p className='title'>{quiz.title}</p>
+              <div className="details">
+                <p>{quiz.description}</p>
+                <p>{quiz.created_at}</p>
+              </div>
+              </div>
+            </Link>
           );
         })}
-      </ul>
+
+    </div>
     </div>
   );
 }  

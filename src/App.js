@@ -7,7 +7,6 @@ import Quiz from './pages/Quiz/Quiz'
 function App() {
   return (
     <div className="App">
-      <main>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home/>}></Route>
@@ -15,7 +14,6 @@ function App() {
             <Route path="/quiz/:id" element={<Quiz/>}></Route>
           </Routes>
         </BrowserRouter>
-      </main>
     </div>
   );
 }

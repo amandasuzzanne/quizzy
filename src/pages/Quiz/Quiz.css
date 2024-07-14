@@ -14,7 +14,7 @@
 .quiz-container hr{
     height: 2px;
     border: none;
-    background: #707070
+    background: #707070 !important;
 }
 
 .quiz-container h2{
