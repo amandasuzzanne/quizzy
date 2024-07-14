@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './Quiz.css';
 
 const Quiz = () => {
@@ -80,6 +80,9 @@ const Quiz = () => {
             {result?<>
                 <div className="score">
                 <p>Score: {score}/{totalQuestions}</p>
+                <button>
+                <Link to={"/"}>Go Back Home</Link>
+                </button>
             </div>
             </>:<>
             <p>{currentQuestion.question_text}</p>
